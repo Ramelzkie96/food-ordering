@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg main_menu">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo.png" alt="FoodPark" class="img-fluid">
+            <a class="navbar-brand" href="<?= $base_url ?>/index.php">
+                <img src="<?= $base_url ?>/images/logo.png" alt="FoodPark" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,41 +10,41 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="<?= $base_url ?>/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">about</a>
+                        <a class="nav-link" href="<?= $base_url ?>/about.php">about</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="menu.html">menu</a>
+                        <a class="nav-link" href="<?= $base_url ?>/menu.php">menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="chefs.html">chefs</a>
+                        <a class="nav-link" href="<?= $base_url ?>/chefs.php">chefs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                         <ul class="droap_menu">
-                            <li><a href="menu_details.html">menu details</a></li>
-                            <li><a href="blog_details.html">blog details</a></li>
-                            <li><a href="cart_view.html">cart view</a></li>
-                            <li><a href="check_out.html">checkout</a></li>
-                            <li><a href="payment.html">payment</a></li>
-                            <li><a href="testimonial.html">testimonial</a></li>
-                            <li><a href="search_menu.html">search result</a></li>
-                            <li><a href="404.html">404/Error</a></li>
-                            <li><a href="faq.html">FAQs</a></li>
-                            <li><a href="sign_in.html">sign in</a></li>
-                            <li><a href="sign_up.html">sign up</a></li>
-                            <li><a href="forgot_password.html">forgot password</a></li>
-                            <li><a href="privacy_policy.html">privacy policy</a></li>
-                            <li><a href="terms_condition.html">terms and condition</a></li>
+                            <li><a href="<?= $base_url ?>/menu_details.php">menu details</a></li>
+                            <li><a href="<?= $base_url ?>/blog_details.php">blog details</a></li>
+                            <li><a href="<?= $base_url ?>/cart_view.php">cart view</a></li>
+                            <li><a href="<?= $base_url ?>/check_out.php">checkout</a></li>
+                            <li><a href="<?= $base_url ?>/payment.php">payment</a></li>
+                            <li><a href="<?= $base_url ?>/testimonial.php">testimonial</a></li>
+                            <li><a href="<?= $base_url ?>/search_menu.php">search result</a></li>
+                            <li><a href="<?= $base_url ?>/404.php">404/Error</a></li>
+                            <li><a href="<?= $base_url ?>/faq.php">FAQs</a></li>
+                            <li><a href="<?= $base_url ?>/sign_in.php">sign in</a></li>
+                            <li><a href="<?= $base_url ?>/sign_up.php">sign up</a></li>
+                            <li><a href="<?= $base_url ?>/forgot_password.php">forgot password</a></li>
+                            <li><a href="<?= $base_url ?>/privacy_policy.php">privacy policy</a></li>
+                            <li><a href="<?= $base_url ?>/terms_condition.php">terms and condition</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="blogs.html">blog</a>
+                        <a class="nav-link" href="blogs.php">blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">contact</a>
+                        <a class="nav-link" href="contact.php">contact</a>
                     </li>
                 </ul>
                 <ul class="menu_icon d-flex flex-wrap">
@@ -62,7 +62,7 @@
                         <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span>5</span></a>
                     </li>
                     <li>
-                        <a href="dashboard.html"><i class="fas fa-user"></i></a>
+                        <a href="<?= $base_url ?>/dashboard.php"><i class="fas fa-user"></i></a>
                     </li>
                     <li>
                         <a class="common_btn" href="#" data-bs-toggle="modal"

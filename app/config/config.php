@@ -25,3 +25,5 @@ try {
     // SHOW real error (DEV ONLY)
     die("❌ Database connection failed: " . $e->getMessage());
 }
+
+$base_url = '/food-ordering/public';
