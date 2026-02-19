@@ -1,6 +1,8 @@
 <?php
 $title = 'Menu';
 require './layout/header.php';
+require './layout/topbar.php';
+require './layout/navbar.php';
 ?>
 
     <div class="fp__menu_cart_area">

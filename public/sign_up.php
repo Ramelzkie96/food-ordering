@@ -1,6 +1,8 @@
 <?php
 $title = 'Sign Up';
 require './layout/header.php';
+require './layout/topbar.php';
+require './layout/navbar.php';
 ?>
 
     <div class="fp__menu_cart_area">
@@ -146,6 +148,18 @@ require './layout/header.php';
     <!--=========================
         SIGN UP START
     ==========================-->
+    <?php if (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+    </div>
+<?php endif; ?>
+
     <section class="fp__signup" style="background: url(images/login_bg.jpg);">
         <div class="fp__signup_overlay pt_125 xs_pt_95 pb_100 xs_pb_70">
             <div class=" container">
@@ -154,39 +168,42 @@ require './layout/header.php';
                         <div class="fp__login_area">
                             <h2>Welcome back!</h2>
                             <p>sign up to continue</p>
-                            <form>
+                            <form action="./../app/controllers/AuthController.php" method="POST">
+                                <input type="hidden" name="action" value="register">
+
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>name</label>
-                                            <input type="text" placeholder="Name">
+                                            <input type="text" name="name" placeholder="Name" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>email</label>
-                                            <input type="email" placeholder="Email">
+                                            <input type="email" name="email" placeholder="Email" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>password</label>
-                                            <input type="password" placeholder="Password">
+                                            <input type="password" name="password" placeholder="Password" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>confirm password</label>
-                                            <input type="password" placeholder="Confirm Password">
+                                            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <button type="submit" class="common_btn">login</button>
+                                            <button type="submit" class="common_btn">Sign Up</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
+
                             <p class="or"><span>or</span></p>
                             <ul class="d-flex">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -194,7 +211,7 @@ require './layout/header.php';
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                             </ul>
-                            <p class="create_account">Dont’t have an aceount ? <a href="sign_in.html">login</a></p>
+                            <p class="create_account">Dont’t have an aceount ? <a href="<?= $base_url ?>/sign_in.php">login</a></p>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,10 @@
 <?php
 $title = 'Sing In';
 require './layout/header.php';
+require './layout/topbar.php';
+require './layout/navbar.php';
 ?>
+
 
     <div class="fp__menu_cart_area">
         <div class="fp__menu_cart_boody">
@@ -154,39 +157,44 @@ require './layout/header.php';
                         <div class="fp__login_area">
                             <h2>Welcome back!</h2>
                             <p>sign in to continue</p>
-                            <form>
+                            <form action="./../app/controllers/AuthController.php" method="POST">
+                                <input type="hidden" name="action" value="login">
+
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <label>email</label>
-                                            <input type="email" placeholder="Email">
+                                            <label>Email</label>
+                                            <input type="email" name="email" placeholder="Email" required>
                                         </div>
                                     </div>
+
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <label>password</label>
-                                            <input type="password" placeholder="Password">
+                                            <label>Password</label>
+                                            <input type="password" name="password" placeholder="Password" required>
                                         </div>
                                     </div>
+
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput fp__login_check_area">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" name="remember" id="flexCheckDefault">
                                                 <label class="form-check-label" for="flexCheckDefault">
-                                                    Remeber Me
+                                                    Remember Me
                                                 </label>
                                             </div>
                                             <a href="forgot_password.html">Forgot Password ?</a>
                                         </div>
                                     </div>
+
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
-                                            <button type="submit" class="common_btn">login</button>
+                                            <button type="submit" class="common_btn">Login</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
+
                             <p class="or"><span>or</span></p>
                             <ul class="d-flex">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -194,7 +202,7 @@ require './layout/header.php';
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                             </ul>
-                            <p class="create_account">Dont’t have an aceount ? <a href="sign_up.html">Create Account</a>
+                            <p class="create_account">Dont’t have an aceount ? <a href="<?= $base_url ?>/sign_up.php">Create Account</a>
                             </p>
                         </div>
                     </div>

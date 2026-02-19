@@ -1,6 +1,25 @@
 <?php
-$title = 'Dashboard Profile';
 require './layout/header.php';
+// 🔒 Redirect if not logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: sign_in.php");
+    exit;
+}
+
+require './layout/topbar.php';
+require './layout/navbar.php';
+
+
+$user_id = $_SESSION['user_id'];
+$stmt = $pdo->prepare("SELECT u.name, u.email, p.phone, p.address 
+                       FROM users u 
+                       LEFT JOIN user_profiles p ON u.id = p.user_id 
+                       WHERE u.id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$phone = $user['phone'] ?? 'Not provided';
+$address = $user['address'] ?? 'Not provided';
 ?>
 
     <div class="fp__menu_cart_area">
@@ -158,7 +177,7 @@ require './layout/header.php';
                                     <label for="upload"><i class="far fa-camera"></i></label>
                                     <input type="file" id="upload" hidden>
                                 </div>
-                                <h2>hasib ahmed</h2>
+                                <h2><?= htmlspecialchars($user['name']) ?></h2>
                             </div>
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
@@ -190,9 +209,13 @@ require './layout/header.php';
                                     data-bs-target="#v-pills-settings" type="button" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false"><span><i
                                             class="fas fa-user-lock"></i></span> Change Password </button>
+                                <form action="../app/controllers/AuthController.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="action" value="logout">
+                                    <button type="submit" class="nav-link">
+                                        <span><i class="fas fa-sign-out-alt"></i></span> Logout
+                                    </button>
+                                </form>
 
-                                <button class="nav-link" type="button"><span> <i class="fas fa-sign-out-alt"></i>
-                                    </span> Logout</button>
                             </div>
                         </div>
                     </div>
@@ -229,7 +252,7 @@ require './layout/header.php';
                                         </div>
 
                                         <div class="fp_dash_personal_info">
-                                            <h4>Parsonal Information
+                                            <h4>Personal Information
                                                 <a class="dash_info_btn">
                                                     <span class="edit">edit</span>
                                                     <span class="cancel">cancel</span>
@@ -237,40 +260,47 @@ require './layout/header.php';
                                             </h4>
 
                                             <div class="personal_info_text">
-                                                <p><span>Name:</span> Hasib Ahmed</p>
-                                                <p><span>Email:</span> hasibahmed@gmail.com</p>
-                                                <p><span>Phone:</span> 023 434 54354</p>
-                                                <p><span>Address:</span> 7232 Broadway Suite 308, Jackson Heights,
-                                                    11372, NY, United States </p>
+                                                <p><span>Name:</span> <?= htmlspecialchars($user['name']) ?></p>
+                                                <p><span>Email:</span> <?= htmlspecialchars($user['email']) ?></p>
+                                                <p><span>Phone:</span> <?= htmlspecialchars($phone) ?></p>
+                                                <p><span>Address:</span> <?= htmlspecialchars($address) ?></p>
                                             </div>
 
                                             <div class="fp_dash_personal_info_edit comment_input p-0">
-                                                <form>
+                                                <form action="../app/controllers/UpdateProfileController.php" method="POST">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>name</label>
-                                                                <input type="text" placeholder="Name">
+                                                                <label>Name</label>
+                                                                <input type="text" name="name"
+                                                                    value="<?= htmlspecialchars($user['name'] ?? '') ?>"
+                                                                    required>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-xl-6 col-lg-6">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>email</label>
-                                                                <input type="email" placeholder="Email">
+                                                                <label>Email</label>
+                                                                <input type="email" name="email"
+                                                                    value="<?= htmlspecialchars($user['email'] ?? '') ?>"
+                                                                    required>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-xl-6 col-lg-6">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>phone</label>
-                                                                <input type="text" placeholder="Phone">
+                                                                <label>Phone</label>
+                                                                <input type="text" name="phone"
+                                                                    value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
                                                             </div>
                                                         </div>
+
                                                         <div class="col-xl-12">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>address</label>
-                                                                <textarea rows="4" placeholder="Address"></textarea>
+                                                                <label>Address</label>
+                                                                <textarea name="address" rows="4"><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
                                                             </div>
-                                                            <button type="submit" class="common_btn">submit</button>
+                                                            <button type="submit" class="common_btn">Submit</button>
                                                         </div>
                                                     </div>
                                                 </form>

@@ -6697,3 +6697,35 @@ CHECKOUT PAGE START
 /*============================
     SIGN IN END
 ============================*/
+
+
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #333;
+    color: #fff;
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 250px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.success { background: #28a745; }
+.toast.error { background: #dc3545; }
+.toast.info { background: #17a2b8; }
+.toast.warning { background: #ffc107; color: #000; }
